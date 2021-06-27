@@ -18,28 +18,28 @@ dim nbc as integer
 MsgBox "La Macro va s'initialiser, pour cela il faut que vous ayez rempli les feuilles Terrains de stage et Liste etudiants correctement"
 	
   
-	'Définit la 1ere feuille 
+	'DÃ©finit la 1ere feuille 
 	oCurseur = ThisComponent.Sheets(0).createCursor  
 	oCurseur.gotoEndOfUsedArea( False ) 
   
-	'L'index de la première ligne = 0  
+	'L'index de la premiÃ¨re ligne = 0  
 	NBe = oCurseur.RangeAddress.EndRow
 
-	'Définit la 2eme feuille 
+	'DÃ©finit la 2eme feuille 
 	oCurseur = ThisComponent.Sheets(1).createCursor  
 	oCurseur.gotoEndOfUsedArea( False ) 
   
-	'L'index de la première colonne = 0  
+	'L'index de la premiÃ¨re colonne = 0  
 	NBs = oCurseur.RangeAddress.EndColumn-1
 
 'Fin d'initialisation
 Doc = ThisComponent
 
-''''''''Feuille Coefficient Période X''''''''
+''''''''Feuille Coefficient PÃ©riode X''''''''
 
 Dim Nb_periode as integer
 Dim Nb_periode_Max as integer
-    NB_periode_Max = InputBox ("Veuillez entrer le nombre de périodes : ","Chère utilisatrice, cher utilisateur")
+    NB_periode_Max = InputBox ("Veuillez entrer le nombre de pÃ©riodes : ","ChÃ¨re utilisatrice, cher utilisateur")
     MsgBox ( Nb_periode_Max , 64, "Confirmation de formule")
 
 
@@ -48,7 +48,7 @@ For Nb_periode=1 to Nb_periode_Max
 	'Ajoute une feuille, la nomme et place l'onglet en 3eme position 
 	Doc.GetSheets.insertNewByName("Coef " & Nb_periode,Nb_periode+1)
 	
- 'Commande suivante devant être executé depuis la feuille : erreur depuis la console
+ 'Commande suivante devant Ãªtre executÃ© depuis la feuille : erreur depuis la console
  
 Sheet = Doc.Sheets(Nb_periode+1)
 Dim Range as object
@@ -58,23 +58,23 @@ Dim Range as object
 
 		Cell = Sheet.getCellByPosition(0,0)   
 		With Cell 
-		  .setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  .setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		  
 		  
 		'Ajuste la hauteur de la 5eme ligne au contenu des cellules.  
 		Sheet.Rows(0).OptimalHeight = True 
 		
- 'Formule des étudiants pour brut
+ 'Formule des Ã©tudiants pour brut
  Sheet = Doc.Sheets(Nb_periode+1)
 	Cell = Sheet.getCellByPosition(0,1)
 		Cell.formula = "=$'Liste Etudiants'.A1"
@@ -92,30 +92,30 @@ Cell.String = "Coefficients"
 		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
 
 
-	'Définit la 1ere feuille 
+	'DÃ©finit la 1ere feuille 
 	oCurseur = Doc.Sheets(Nb_periode+1).createCursor  
 	oCurseur.gotoEndOfUsedArea( False ) 
   
-	'L'index de la première ligne = 0  
+	'L'index de la premiÃ¨re ligne = 0  
 	nbl = oCurseur.RangeAddress.EndRow+1
   
-	'L'index de la première colonne = 0  
+	'L'index de la premiÃ¨re colonne = 0  
 	nbc = oCurseur.RangeAddress.EndColumn+1
 	
 
 	Sheet = Doc.Sheets(Nb_periode+1)
 	Range = Sheet.getCellRangeByPosition(4,1,3+Nbs,1)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(218,165,32) 'indique la couleur de fond 
-		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	
 	Sheet.Rows(1).OptimalHeight = True 
@@ -123,16 +123,16 @@ Cell.String = "Coefficients"
 	Sheet = Doc.Sheets(Nb_periode+1)
 	Range = Sheet.getCellRangeByPosition(0,2,3,NBe+1)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,248,255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		Dim numl as integer
 	For numl =1 to NBe-1
@@ -152,16 +152,16 @@ Plage = Sheet.getCellRangeByPosition( 0 , nbl , Nbs+3 , nbl )
 		Plage.Merge( True ) 
 		Cell = Sheet.getCellByPosition(0,nbl)  
 		With Cell 
-		  .setString( "Notes Normalisées" ) 'insére du texte dans la cellule 
+		  .setString( "Notes NormalisÃ©es" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		Sheet.Rows(nbl).OptimalHeight = True 
 		
@@ -175,33 +175,33 @@ Plage = Sheet.getCellRangeByPosition( 0 , nbl , Nbs+3 , nbl )
 		
 	Range = Sheet.getCellRangeByPosition(0,nbl+1,3,2*nbl-1)
 	With Range 
-		  '.setString( "Notes Normalisées" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes NormalisÃ©es" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,248,255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		 ' .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		 ' .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 	Range = Sheet.getCellRangeByPosition(4,nbl+1,3+Nbs,nbl+1)
 	With Range 
-		  '.setString( "Notes Normalisées" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes NormalisÃ©es" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(218,165,32) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		 ' .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		 ' .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
  	
-'Ecriture de la formule cellule 1,1 Normalisé
+'Ecriture de la formule cellule 1,1 NormalisÃ©
 
 	Sheet = Doc.Sheets(Nb_periode+1)
 	Cell = Sheet.getCellByPosition(4,nbl+2) 
@@ -220,7 +220,7 @@ Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.Fi
 Next Nb_periode
 
 
-''''''''Feuille Stage Période X''''''''
+''''''''Feuille Stage PÃ©riode X''''''''
 
 For Nb_periode=1 to Nb_periode_Max
 
@@ -230,7 +230,7 @@ For Nb_periode=1 to Nb_periode_Max
 	'Ajoute une feuille, la nomme et place l'onglet en 3eme position 
 	oDoc.GetSheets.insertNewByName("Stage " & Nb_periode,Nb_periode_Max + Nb_periode+1)
 
-'Ecriture des en têtes 
+'Ecriture des en tÃªtes 
 
 	Sheet = Doc.Sheets(Nb_periode_Max + Nb_periode+1)
 	
@@ -239,16 +239,16 @@ For Nb_periode=1 to Nb_periode_Max
 
 		Cell = Sheet.getCellByPosition(1,0) 
 		With Cell 
-		  .setString( "Tableau Binaire" ) 'insére du texte dans la cellule 
+		  .setString( "Tableau Binaire" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		  
 		'Ajuste la hauteur de la 5eme ligne au contenu des cellules.  
@@ -257,16 +257,16 @@ For Nb_periode=1 to Nb_periode_Max
 	
 	Cell = Sheet.getCellByPosition(0,0) 
 		With Cell 
-		  .setString( "Fonction Solveur" ) 'insére du texte dans la cellule 
+		  .setString( "Fonction Solveur" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(60,179,113) 'indique la couleur de fond 
-		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		  
 	Cell = Sheet.getCellByPosition(0,1) 
@@ -284,60 +284,60 @@ For Nb_periode=1 to Nb_periode_Max
 		With Cell 
 	'	  .setFormula("=SOMMEPROD($'Coef " & Nb_periode & "'.D" & (Nbe+4) & ":$'Coef " & Nb_periode & "'." & Extract_1 & ";B6:" & Extract_2 &")")
 		  .CellBackColor = RGB(144,238,144) 'indique la couleur de fond 
-		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	
 	
 	Cell = Sheet.getCellByPosition(0,2) 
 		
 		With Cell 
-		  .setString( "Minimum" ) 'insére du texte dans la cellule 
+		  .setString( "Minimum" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,128,128) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	
 	
 	Cell = Sheet.getCellByPosition(0,3)
 	
 		With Cell 
-		  .setString( "Maximum" ) 'insére du texte dans la cellule 
+		  .setString( "Maximum" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(205,92,92) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	
 	Cell = Sheet.getCellByPosition(0,4)
 	With Cell 
-		  .setString( "Affectés" ) 'insére du texte dans la cellule 
+		  .setString( "AffectÃ©s" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(178,34,34) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	
 	form = "=$'Place Stage'.C$1"
@@ -345,16 +345,16 @@ For Nb_periode=1 to Nb_periode_Max
 	Cell.formula = form
 	
 	With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  CellBackColor = RGB(139,0,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Cell.CellBackColor = RGB(139,0,0)
 	
@@ -364,16 +364,16 @@ dim offset as integer
 	Cell = Sheet.getCellByPosition(1,2)
 	Cell.formula = form
 		With Cell 
-		  '.setString( "Minimum" ) 'insére du texte dans la cellule 
+		  '.setString( "Minimum" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,128,128) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		
 	form = "=$'Place Stage'.C" & 4+offset
@@ -381,31 +381,31 @@ dim offset as integer
 	Cell.formula = form
 	
 	With Cell 
-		 ' .setString( "Maximum" ) 'insére du texte dans la cellule 
+		 ' .setString( "Maximum" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(205,92,92) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 	
 	Cell = Sheet.getCellByPosition(1,4)
 	Cell.formula = "=SUM(B6:B" & 5+NBe & ")"
 		With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(178,34,34) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	
 	Sheet.columns(0).OptimalWidth = True
@@ -421,16 +421,16 @@ Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.Fi
 	Cell.formula = form
 	
 	With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 	Range = Sheet.getCellRangeByPosition(0,5,0,NBe+4)
@@ -449,30 +449,30 @@ dim extractform2 as string
 		
 	Cell = Sheet.getCellByPosition(Nbs+2,4)
 			With Cell 
-		  .setString( "Hors Algo" ) 'insére du texte dans la cellule 
+		  .setString( "Hors Algo" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(26, 188, 156) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 		Cell = Sheet.getCellByPosition(Nbs+3,4)
 			With Cell 
-		  .setString( "Commentaire" ) 'insére du texte dans la cellule 
+		  .setString( "Commentaire" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(26, 188, 156) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 Dim horsalgo as string
 	Cell = Sheet.getCellByPosition(Nbs+2,5)
@@ -480,29 +480,29 @@ Dim horsalgo as string
 	horsalgo = Cell.string
 	Cell.formulalocal = "=SI(ESTVIDE(" & horsalgo & ");0;1)"
 			With Cell 
-		  '.setString( "Hors Algo" ) 'insére du texte dans la cellule 
+		  '.setString( "Hors Algo" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(130, 224, 170) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Cell = Sheet.getCellByPosition(Nbs+3,5)
 		With Cell 
-		  '.setString( "Hors Algo" ) 'insére du texte dans la cellule 
+		  '.setString( "Hors Algo" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(130, 224, 170) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	Range = Sheet.getCellRangeByPosition(Nbs+1,5,Nbs+3,NBe+4)
 	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -517,32 +517,32 @@ offset = offset +2
 	
 	Cell = Sheet.getCellByPosition(0,NBe+5)
 		With Cell 
-		  .setString( "Tableau Satisfaction" ) 'insére du texte dans la cellule 
+		  .setString( "Tableau Satisfaction" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	  
 	Cell = Sheet.getCellByPosition(1,NBe+6) 
 	Cell.formula = "=$'Place Stage'.C$1"
 	
 	With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  CellBackColor = RGB(139,0,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Cell.CellBackColor = RGB(139,0,0)
 	
@@ -553,16 +553,16 @@ offset = offset +2
 	Form = "=CONCAT($'Liste Etudiants'.$B2 ;" & chr(34) & chr(0160) & chr(34) &"; $'Liste Etudiants'.$C2)"
 	Cell.formula = form
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Range = Sheet.getCellRangeByPosition(0,NBe+7,0,2*NBe+7)
 	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -592,31 +592,31 @@ offset = offset +2
 	
 	Cell = Sheet.getCellByPosition(0,2*NBe+7)
 		With Cell 
-		  .setString( "Tableau Stage" ) 'insére du texte dans la cellule 
+		  .setString( "Tableau Stage" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	
 	Cell = Sheet.getCellByPosition(1,2*NBe+8) 
 	Cell.formula = "=$'Place Stage'.C$1"
 	With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  CellBackColor = RGB(139,0,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Cell.CellBackColor = RGB(139,0,0)
 	
@@ -627,16 +627,16 @@ offset = offset +2
 	Form = "=CONCAT($'Liste Etudiants'.$B2 ;" & chr(34) & chr(0160) & chr(34) &"; $'Liste Etudiants'.$C2)"
 	Cell.formula = form
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Range = Sheet.getCellRangeByPosition(0,2*NBe+9,0,3*NBe+8)
 	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -663,30 +663,30 @@ offset = offset +2
 	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
 
 Next Nb_periode
-'''''''''''''''''''''' Feuille Réouverture''''''''''''''''''''''''''''''''''''''''
+'''''''''''''''''''''' Feuille RÃ©ouverture''''''''''''''''''''''''''''''''''''''''
 
 	Doc=ThisComponent 
 	  
 	'Ajoute une feuille, la nomme et place l'onglet en 3eme position 
-	Doc.GetSheets.insertNewByName("Réouverture",2*Nb_periode_Max+3)
+	Doc.GetSheets.insertNewByName("RÃ©ouverture",2*Nb_periode_Max+3)
 	
-	Sheet = Doc.Sheets.GetbyName("Réouverture")
+	Sheet = Doc.Sheets.GetbyName("RÃ©ouverture")
 '''''''''''''''''''''	
 	Range = Sheet.getCellRangeByPosition( 0 , 0 , Nbs+3 , 0 ) 
 		Range.Merge( True ) 
 
 		Cell = Sheet.getCellByPosition(0,0)   
 		With Cell 
-		  .setString( "Réouverture" ) 'insére du texte dans la cellule 
+		  .setString( "RÃ©ouverture" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		  
 		  
@@ -712,16 +712,16 @@ Next Nb_periode
 
 		Range = Sheet.getCellRangeByPosition(3,1,2+Nbs,2)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(218,165,32) 'indique la couleur de fond 
-		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	
 	Sheet.Rows(1).OptimalHeight = True 
@@ -729,16 +729,16 @@ Next Nb_periode
 
 	Range = Sheet.getCellRangeByPosition(0,2,2,NBe+2)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,248,255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	For numl =1 to NBe-1
 	Sheet.Rows(1+numl).OptimalHeight = True
@@ -772,32 +772,32 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 	
 	'
 		Cell = Sheet.getCellByPosition(Nbs+2+NumGRP,1)
-		Cell.String = "Regroupement N°"
+		Cell.String = "Regroupement NÂ°"
 		With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(222,184,135) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 		Cell = Sheet.getCellByPosition(Nbs+2+NumGRP,2)
 		Cell.Value = NumGRP
 		With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(222,184,135) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 		Sheet.columns(Nbs+2+NumGRP).OptimalWidth = True
 	Next NumGRP
@@ -832,16 +832,16 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 
 		Cell = Sheet.getCellByPosition(0,0)   
 		With Cell 
-		  .setString( "Regroupement" ) 'insére du texte dans la cellule 
+		  .setString( "Regroupement" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		  
 		  
@@ -865,16 +865,16 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 
 		Range = Sheet.getCellRangeByPosition(3,1,2+Nbs,2)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(218,165,32) 'indique la couleur de fond 
-		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	
 	Sheet.Rows(1).OptimalHeight = True 
@@ -882,16 +882,16 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 
 	Range = Sheet.getCellRangeByPosition(0,2,2,NBe+2)   
 		With Range 
-		  '.setString( "Notes Bruts" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(240,248,255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 	For numl =1 to NBe-1
 	Sheet.Rows(1+numl).OptimalHeight = True
@@ -911,7 +911,7 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 	Dim FormuleBoucle as string
 	FormuleBoucle = "="
 	For Nb_periode = 1 to Nb_periode_Max
-		If Nb_periode < Nb_periode_Max 	then FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6 +" 	else FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6-$Réouverture.D4"
+		If Nb_periode < Nb_periode_Max 	then FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6 +" 	else FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6-$RÃ©ouverture.D4+$PrÃ©cÃ©dents.D4"
 	Next Nb_periode
 
 	Cell = Sheet.getCellByPosition(3,3)
@@ -937,32 +937,32 @@ dim born4 as string
 	
 	'
 		Cell = Sheet.getCellByPosition(Nbs+NumGRP+2,1)
-		Cell.String = "Regroupement N°"
+		Cell.String = "Regroupement NÂ°"
 		With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(222,184,135) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 		Cell = Sheet.getCellByPosition(Nbs+NumGRP+2,2)
 		Cell.Value = NumGRP
 		With Cell 
-		  '.setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		  '.setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(222,184,135) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 		Sheet.columns(Nbs+NumGRP+3).OptimalWidth = True
 		
@@ -975,7 +975,7 @@ dim born4 as string
 		born3 = Cell.string
 		Cell.formulalocal = "=ADRESSE(4;" & Nbs+2+NumGRP+1 & ";4;;)"
 		born4 = Cell.string
-		Cell.formulalocal = "=SOMME.SI($D$3:" & born1 & ";"& born2 &";$D4:" & born3 &")-$Réouverture." & born4
+		Cell.formulalocal = "=SOMME.SI($D$3:" & born1 & ";"& born2 &";$D4:" & born3 &")-$RÃ©ouverture." & born4
 		
 		Sheet.columns(Nbs+2+NumGRP).OptimalWidth = True
 	Next NumGRP
@@ -987,42 +987,42 @@ dim born4 as string
 	End If
 	
 	
-''''''''''''''''Feuille Synthèse '''''''''''''''''''''''''''''''''
+''''''''''''''''Feuille SynthÃ¨se '''''''''''''''''''''''''''''''''
 	
 	oDoc=ThisComponent 
 	  
 	'Ajoute une feuille, la nomme et place l'onglet en 3eme position 
-	oDoc.GetSheets.insertNewByName("Synthèse",2*Nb_periode_Max+5)
+	oDoc.GetSheets.insertNewByName("SynthÃ¨se",2*Nb_periode_Max+5)
 	
-	Sheet = Doc.Sheets.GetByName("Synthèse")
+	Sheet = Doc.Sheets.GetByName("SynthÃ¨se")
 	
 	Cell = Sheet.getCellByPosition(0,0)
 	Cell.string = "Sous Groupe"
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(205,133,63) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Cell = Sheet.getCellByPosition(0,1)
 	Cell.formula = "=$'Liste Etudiants'.$A2 "
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 	Range = Sheet.getCellRangeByPosition(0,1,0,NBe)
 	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -1030,32 +1030,32 @@ dim born4 as string
 	Cell = Sheet.getCellByPosition(1,0)
 	Cell.string = "Etudiant"
 	With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(205,133,63) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 	Cell = Sheet.getCellByPosition(1,1)
 	Form = "=CONCAT($'Liste Etudiants'.$B2 ;" & chr(34) & chr(0160) & chr(34) &"; $'Liste Etudiants'.$C2)"
 	Cell.formula = form
 	With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 	Range = Sheet.getCellRangeByPosition(0,1,1,NBe)
@@ -1064,20 +1064,20 @@ dim born4 as string
 	
 		For Nb_periode = 1 to Nb_periode_Max
 		
-		Sheet = Doc.Sheets.GetByName("Synthèse")	
+		Sheet = Doc.Sheets.GetByName("SynthÃ¨se")	
 		Cell = Sheet.getCellByPosition(1+Nb_periode,0)
-		Cell.String = "Période " & Nb_periode
+		Cell.String = "PÃ©riode " & Nb_periode
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(205,133,63) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 		Cell = Sheet.getCellByPosition(Nb_periode+1,1)
@@ -1086,16 +1086,16 @@ dim born4 as string
 		'Cell.formula = "=COB"& 2*NBe+10 &":" & extractform & ")"
 		Cell.Formula = "=$'Stage "& Nb_periode &"'." & extractform
 		With Cell 
-		 ' .setString( "Nombre d'étudiants sur le terrain" ) 'insére du texte dans la cellule 
+		 ' .setString( "Nombre d'Ã©tudiants sur le terrain" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,250,205) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		 ' .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		 .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 		Sheet.columns(1+Nb_periode).OptimalWidth = True
@@ -1141,35 +1141,35 @@ Next Nb_periode
 
 		Cell = Sheet.getCellByPosition(0,0)   
 		With Cell 
-		  .setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  .setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		 
 		'Ajuste la hauteur de la 5eme ligne au contenu des cellules.  
 		Sheet.Rows(0).OptimalHeight = True 
 		
-		 'Formule des étudiants pour brut
+		 'Formule des Ã©tudiants pour brut
 		Cell = Sheet.getCellByPosition(0,1)
 		Cell.formula = "=$'Liste Etudiants'.A1"
 			With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(151, 200, 255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		Range = Sheet.getCellRangeByPosition(0,1,2,nbe+1)
 		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -1178,16 +1178,16 @@ Next Nb_periode
 		Cell = Sheet.getCellByPosition(3,1)
 		Cell.formula = "=$'Place Stage'.C1"
 			With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(161, 47, 0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		Range = Sheet.getCellRangeByPosition(3,1,2+Nbs,1)
 		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
@@ -1197,35 +1197,35 @@ Next Nb_periode
 
 		Cell = Sheet.getCellByPosition(0,nbe+2)   
 		With Cell 
-		  .setString( "Check Stage et Blocs" ) 'insére du texte dans la cellule 
+		  .setString( "Check Stage et Blocs" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 14 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		 
 		'Ajuste la hauteur de la 5eme ligne au contenu des cellules.  
 		Sheet.Rows(nbe+2).OptimalHeight = True 
 		
-		 'Formule des étudiants pour brut
+		 'Formule des Ã©tudiants pour brut
 		Cell = Sheet.getCellByPosition(0,nbe+3)
 		Cell.formula = "=$'Liste Etudiants'.A1"
 		With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(151, 200, 255) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With  
 		
 		Range = Sheet.getCellRangeByPosition(0,nbe+3,2,2*nbe+3)
@@ -1234,16 +1234,16 @@ Next Nb_periode
 		Cell = Sheet.getCellByPosition(3,nbe+3)
 		Cell.formula = "=$'Place Stage'.C1"
 		With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(161, 47, 0) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(255,255,255) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(255,255,255) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 
 		
 		Range = Sheet.getCellRangeByPosition(3,nbe+3,2+Nbs,nbe+3)
@@ -1253,16 +1253,16 @@ Next Nb_periode
 	
 		Cell.formulalocal ="=SI($Regroupement.B3>=1;" &  chr(34) & chr(34) & ";D3)"
 		With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(211,211,211) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With
 	Else
 	Cell = Sheet.getCellByPosition(3,nbe+4)	
@@ -1278,20 +1278,104 @@ Next Nb_periode
 		Cell.formulalocal = "=SI(ESTERREUR(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 & ":" & born2 & ";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" & ");SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3);SI(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 &":"& born2 &";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement."& born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." &born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" &" ;" &  chr(34) & chr(34) & ";SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3)))"
 	
 		With Cell 
-		  '.setString( "Notes Brutes" ) 'insére du texte dans la cellule 
+		  '.setString( "Notes Brutes" ) 'insÃ©re du texte dans la cellule 
 		  .CellBackColor = RGB(211,211,211) 'indique la couleur de fond 
-		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centré 
-		  '.RotateAngle = 9000 'Rotation 9000 = 90° 
-		  .CharColor = RGB(0,0,0) 'couleur des caractères 
-		  .CharHeight = 10 'Taille catactères 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
 		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
 		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
 		  .CharFontName = "Arial" 'Font 
-		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'souligné double 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
 		End With 		
 	End IF	
 	Range = Sheet.getCellRangeByPosition(3,nbe+4,2+NbS,2*nbe+3)
 		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
 		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)	
+
+'''''''''''''''''''''' Feuille PrÃ©cÃ©dents ''''''''''''''''''''''''''''''''''''''''
+
+	Doc=ThisComponent 
+	  
+	'Ajoute une feuille, la nomme et place l'onglet en 3eme position 
+Doc.GetSheets.insertNewByName("PrÃ©cÃ©dents",2*Nb_periode_Max+7)
+	
+Sheet = Doc.Sheets.GetByNAme("PrÃ©cÃ©dents")
+	
+	
+		Range = Sheet.getCellRangeByPosition( 0 , 0 , Nbs+2 , 0 ) 
+		Range.Merge( True ) 
+
+		Cell = Sheet.getCellByPosition(0,0)   
+		With Cell 
+.setString( "PrÃ©cÃ©dents" ) 'insÃ©re du texte dans la cellule 
+		  .CellBackColor = RGB(255,215,0) 'indique la couleur de fond 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 14 'Taille catactÃ¨res 
+		  .CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
+		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
+		  .CharFontName = "Arial" 'Font 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
+		End With 
+		  
+		  
+		'Ajuste la hauteur de la 5eme ligne au contenu des cellules.  
+		Sheet.Rows(0).OptimalHeight = True 
+		
+	Cell = Sheet.getCellByPosition(0,2)
+		Cell.formula = "=$'Liste Etudiants'.A1"
+	Range = Sheet.getCellRangeByPosition(0,2,2,nbe+2)
+		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+		Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+		
+ 
+ 
+	Cell = Sheet.getCellByPosition(3,1)
+	Cell.formula = "=$'Place Stage'.C1"
+	Range = Sheet.getCellRangeByPosition(3,1,2+Nbs,2)
+	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+
+
+		Range = Sheet.getCellRangeByPosition(3,1,2+Nbs,2)   
+		With Range 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
+		  .CellBackColor = RGB(218,165,32) 'indique la couleur de fond 
+		  .paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
+		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
+		  '.CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
+		  .CharFontName = "Arial" 'Font 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
+		End With 
+	
+	Sheet.Rows(1).OptimalHeight = True 
+		
+
+	Range = Sheet.getCellRangeByPosition(0,2,2,NBe+2)   
+		With Range 
+		  '.setString( "Notes Bruts" ) 'insÃ©re du texte dans la cellule 
+		  .CellBackColor = RGB(240,248,255) 'indique la couleur de fond 
+		  '.paraAdjust = com.sun.star.style.ParagraphAdjust.CENTER 'alignement centrÃ© 
+		  '.RotateAngle = 9000 'Rotation 9000 = 90Â° 
+		  .CharColor = RGB(0,0,0) 'couleur des caractÃ¨res 
+		  .CharHeight = 10 'Taille catactÃ¨res 
+		  '.CharWeight = com.sun.star.awt.FontWeight.BOLD 'gras 
+		  .CharPosture = com.sun.star.awt.FontSlant.ITALIC 'italique 
+		  .CharFontName = "Arial" 'Font 
+		 ' .CharUnderline = com.sun.star.awt.FontUnderline.DOUBLE 'soulignÃ© double 
+		End With 
+	For numl =1 to NBe-1
+	Sheet.Rows(1+numl).OptimalHeight = True
+	Next numl
+
+	For numl=0 to 3
+		Sheet.columns(numl).OptimalWidth = True 
+	Next numl
 
 End Sub

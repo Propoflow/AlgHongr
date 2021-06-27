@@ -900,27 +900,7 @@ Cell = Sheet.getCellByPosition(Nbs+3,1)
 	For numl=0 to 3
 		Sheet.columns(numl).OptimalWidth = True 
 	Next numl
-	
-	
-	
-	
-	
-	
-	
-	
-	Dim FormuleBoucle as string
-	FormuleBoucle = "="
-	For Nb_periode = 1 to Nb_periode_Max
-		If Nb_periode < Nb_periode_Max 	then FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6 +" 	else FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6-$Réouverture.D4+$Précédents.D4"
-	Next Nb_periode
-
-	Cell = Sheet.getCellByPosition(3,3)
-	Cell.formula = FormuleBoucle
-	
-	Range = Sheet.getCellRangeByPosition(3,3,Nbs+2,NBe+2)
-	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
-	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
-	
+		
 	
 	Cell = Sheet.getCellByPosition(Nbs+3,1)
 	Cell.formula = "=MAX($'Place Stage'.2:2)"
@@ -1377,5 +1357,22 @@ Sheet = Doc.Sheets.GetByNAme("Précédents")
 	For numl=0 to 3
 		Sheet.columns(numl).OptimalWidth = True 
 	Next numl
+''Ecriture formaule feuille regroupement """
+
+Sheet = Doc.Sheets.GetByNAme("Regroupement")
+
+Dim FormuleBoucle as string
+	FormuleBoucle = "="
+	For Nb_periode = 1 to Nb_periode_Max
+		If Nb_periode < Nb_periode_Max 	then FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6 +" 	else FormuleBoucle = FormuleBoucle & "$'Stage " & Nb_periode & "'.B6-$Réouverture.D4+$Précédents.D4"
+	Next Nb_periode
+
+	Cell = Sheet.getCellByPosition(3,3)
+	Cell.formula = FormuleBoucle
+	
+	Range = Sheet.getCellRangeByPosition(3,3,Nbs+2,NBe+2)
+	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_RIGHT,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+	Range.fillSeries(com.sun.star.sheet.FillDirection.TO_BOTTOM,com.sun.star.sheet.FillMode.SIMPLE,0,0,0)
+
 
 End Sub

@@ -313,10 +313,12 @@ For Nb_periode=1 to Nb_periode_Max
 
 	'Récupération des coordonnées de la dernières cellule de la ligne & de la cellule hors algo pour formule de la somme de la ligne 
 		Cell = Sheet.getCellByPosition(Nbs+1,5)
-			Cell.formulalocal = "=ADRESSE(6;" & Nbs+1 & ";4;; )"
+			Cell.formulalocal = "=ADRESSE(6;" & Nbs+4 & ";4;; )"
 			Extract_HA = Cell.string
 			Cell.formulalocal = "=ADRESSE(6;" & Nbs+3 & ";4;; )"
-			Extract_2 = Cell.string 
+			Extract_2 = Cell.string
+			Cell.formulalocal = "=ADRESSE(6;" & Nbs+1 & ";4;; )"
+			Extract_1 = Cell.string 
 		Cell.formula = "=SUM(B6:" & Extract_1 & ")+" & Extract_2
 	
 	'Création des colonnes Hors algo
@@ -861,7 +863,14 @@ Next Nb_periode
 			Born2 = Cell.String
 			Cell.formulalocal = "=Adresse(3;" & Nbs+3+NbGRP & ";1)"
 			Born5 = Cell.String
-		Cell.formulalocal = "=SI(ESTERREUR(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 & ":" & born2 & ";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" & ");SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3);SI(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 &":"& born2 &";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement."& born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." &born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" &" ;" &  chr(34) & chr(34) & ";SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3)))"
+			
+			Cell.formulalocal = "=Adresse(1;" & Nbs+4 & ";1)"
+			Born6 = Cell.String
+			Cell.formulalocal = "=Adresse(1;" & Nbs+3+NbGRP & ";1)"
+			Born7 = Cell.String
+			
+		'Cell.formulalocal = "=SI(ESTERREUR(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 & ":" & born2 & ";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" & ");SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3);SI(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 &":"& born2 &";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement."& born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." &born1 & ":" & born5 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born1 & ":" & born5 & ");1)" &" ;" &  chr(34) & chr(34) & ";SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3)))"
+		Cell.formulalocal = "=SI(ESTERREUR(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 & ":" & born2 & ";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born6 & ":" & born7 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born6 & ":" & born7 & ");1)" & ");SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3);SI(RECHERCHEH($'Place Stage'.C$2;$Regroupement." & born1 &":"& born2 &";LIGNE($Regroupement.A3)-1;)>=SI(SOMME.SI($Regroupement."& born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." &born6 & ":" & born7 &")>0;SOMME.SI($Regroupement." & born1 & ":" & born5 & ";$'Place Stage'.C$2;$Regroupement." & born6 & ":" & born7 & ");1)" &" ;" &  chr(34) & chr(34) & ";SI($Regroupement.D4>=1;" &  chr(34) & chr(34) & ";D3)))"
 		With Cell 
 			.CellBackColor = RGB(211,211,211) 'indique la couleur de fond 
 			.CharColor = RGB(0,0,0) 'couleur des caractères 
